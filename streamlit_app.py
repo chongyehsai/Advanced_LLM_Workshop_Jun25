@@ -21,7 +21,6 @@ template = (
     "{context}\n"
     "Question: {question}
     The time is {get_time()}.
-    "
 )
 prompt = ChatPromptTemplate.from_template(template)
 
