@@ -8,7 +8,7 @@ from langchain_core.messages import HumanMessage
 
 
 # Initialize the language model and prompt template
-llm = ChatOpenAI(model='gpt-4', max_tokens=100)
+llm = ChatOpenAI(model='gpt-4o', max_tokens=100)
 str_parser = StrOutputParser()
 template = (
     "Please answer the questions based on the following content and your own judgment:\n"
