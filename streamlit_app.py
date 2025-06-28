@@ -19,8 +19,8 @@ str_parser = StrOutputParser()
 template = (
     "Please answer the questions based on the following content and your own judgment:\n"
     "{context}\n"
-    "Question: {question}
-    The time is {get_time()}.
+    "Question: {question}\n"
+    "The time is {time}."
 )
 prompt = ChatPromptTemplate.from_template(template)
 
@@ -47,7 +47,7 @@ if st.button("Get Answer"):
         context_texts = "\n".join([doc.page_content for doc in retrieved_docs])
 
         # Format and retrieve the answer from the LLM
-        inputs = {"context": context_texts, "question": question}
+        inputs = {"context": context_texts, "question": question, "time": get_time()}
         formatted_prompt = prompt.format(**inputs)
         answer = llm([HumanMessage(content=formatted_prompt)])
 
