@@ -6,6 +6,12 @@ from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
 from langchain_core.messages import HumanMessage
 
+from datetime import datetime, timedelta, timezone
+
+def get_time():
+    gmt_plus_8 = timezone(timedelta(hours=8))
+    now = datetime.now(gmt_plus_8)
+    return now.strftime('%I:%M %p')
 
 # Initialize the language model and prompt template
 llm = ChatOpenAI(model='gpt-4o', max_tokens=100)
@@ -13,7 +19,9 @@ str_parser = StrOutputParser()
 template = (
     "Please answer the questions based on the following content and your own judgment:\n"
     "{context}\n"
-    "Question: {question}"
+    "Question: {question}
+    The time is {get_time()}.
+    "
 )
 prompt = ChatPromptTemplate.from_template(template)
 
